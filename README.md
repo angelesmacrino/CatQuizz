@@ -1,24 +1,11 @@
-# quizzcatvue
+# CatQuizz
 
-## Project setup
-```
-npm install
-```
+  ![Alt text](/src/assets/cat.png?raw=true "Optional Title")
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+A cat-themed trivia game.   
+Illustration made with Adobe Illustrator.   
+  
+UI design made with Adobe XD.
+Developed in Vue 3.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+In development
