@@ -1,26 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Loading v-show="loading"/>
+  <WelcomePage @componentMounted="cMounted" @startingGame="startGame" v-if="welcome"/>
+  <Game v-if="game"/>
+
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WelcomePage from "./components/WelcomePage.vue"
+import Loading from "./components/Loading.vue"
+import Game from "./components/Game.vue"
+
 
 export default {
   name: 'App',
+  data() {
+    return {
+      loading: true,
+      welcome: true,
+      game: false,
+    }
+  },
   components: {
-    HelloWorld
-  }
+    WelcomePage,
+    Loading,
+    Game
+  },
+  methods: {
+   cMounted() {
+     this.loading = false
+   },
+   startGame() {
+     this.welcome = false;
+     this.game = true
+   },
+   
+  },
+ 
 }
+
+
+
+    
+
+
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+html {
+  font-size: 62.5%;
+  background-color: #62E2C1;
 }
+
+#app {
+  background-color: #62E2C1;
+}
+
+
 </style>
