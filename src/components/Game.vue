@@ -1,8 +1,8 @@
 <template>
 <div v-if="loaded" class="container">
         <div class="row">
-            <div class="col d-flex flex-column align-items-center justify-content-center">
-                <div class="row" id="question"> {{questions[index].question}}</div>
+            <div v-if="index < questions.length" class="col d-flex flex-column align-items-center justify-content-center">
+                <div class="row" id="question"> {{index+1}}/{{questions.length}} : {{questions[index].question}}</div>
                 <div class="answer" id="correct" @click="correctChoice"> {{questions[index].correct_answer}} </div>
                 <div class="answer" id="incorrect" @click="wrongChoice"> {{questions[index].incorrect_answers[0]}} </div>
                 <div class="row align-self-start" id="score"> SCORE: {{score}} </div>
@@ -28,11 +28,24 @@ export default {
             document.getElementById("correct").style.pointerEvents = "none";
             document.getElementById("incorrect").style.pointerEvents = "none";
             document.getElementById("correct").style.border = "thick solid #00FF00";
+            setTimeout(this.nextQuestion, 1500)
        },
        wrongChoice() {
             document.getElementById("incorrect").style.border = "thick solid #FF0000";
             document.getElementById("correct").style.pointerEvents = "none";
             document.getElementById("incorrect").style.pointerEvents = "none";
+            setTimeout(this.nextQuestion, 1500)
+       },
+       nextQuestion() {
+            this.index++;
+            document.getElementById("correct").style.border = "none";
+            document.getElementById("incorrect").style.border = "none";
+            document.getElementById("correct").style.pointerEvents = "auto";
+            document.getElementById("incorrect").style.pointerEvents = "auto";
+            if (this.index === this.questions.length) this.gameFinished;
+       },
+       gameFinished() {
+
        }
    },
    created() {
@@ -40,6 +53,7 @@ export default {
         .then((res) => res.json())
         .then(data => {
             this.questions = data.results;
+            console.log(this.questions)
             this.loaded = true
         })
         .catch(err => console.log(err.message))
