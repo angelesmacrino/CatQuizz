@@ -1,14 +1,11 @@
 <template>
-<div class="container">
+<div v-if="loaded" class="container">
         <div class="row">
             <div class="col d-flex flex-column align-items-center justify-content-center">
-                <div class="row" id="question">QUESTION</div>
-                    <div class="row answer" id="answer1">answer1</div>
-                    <div class="row answer" id="answer2">answer2</div>
-                    <div class="row answer" id="answer3">answer3</div>
-                    <div class="row answer" id="answer4">answer4</div>
-                    <div class="row answer" id="answer5">answer5</div>
-                <div class="row align-self-start" id="score">SCORE:</div>
+                <div class="row" id="question"> {{questions[index].question}}</div>
+                <div class="answer" id="correct" @click="correctChoice"> {{questions[index].correct_answer}} </div>
+                <div class="answer" id="incorrect" @click="wrongChoice"> {{questions[index].incorrect_answers[0]}} </div>
+                <div class="row align-self-start" id="score"> SCORE: {{score}} </div>
             </div>
         </div>
 </div>
@@ -16,7 +13,37 @@
 
 <script>
 export default {
-   
+   data() {
+       return {
+           questions: [],
+           index: 0,
+           score: 0,
+           answer: "",
+           loaded:false
+       }
+   },
+   methods: {
+       correctChoice() {
+           this.score++
+            document.getElementById("correct").style.pointerEvents = "none";
+            document.getElementById("incorrect").style.pointerEvents = "none";
+            document.getElementById("correct").style.border = "thick solid #00FF00";
+       },
+       wrongChoice() {
+            document.getElementById("incorrect").style.border = "thick solid #FF0000";
+            document.getElementById("correct").style.pointerEvents = "none";
+            document.getElementById("incorrect").style.pointerEvents = "none";
+       }
+   },
+   created() {
+       fetch("https://opentdb.com/api.php?amount=10&category=27&type=boolean")
+        .then((res) => res.json())
+        .then(data => {
+            this.questions = data.results;
+            this.loaded = true
+        })
+        .catch(err => console.log(err.message))
+   }
 }
 </script>
 
@@ -58,8 +85,12 @@ $large-desktop-width: 1800px;
 
 
 .container {
+    margin-left: auto;
     @media (orientation:portrait) {
         margin-top:20%;
+    }
+    @media (orientation:landscape) {
+        margin-top:15%;
     }
     #question {
     background-color: white;
@@ -68,17 +99,21 @@ $large-desktop-width: 1800px;
     font-family: 'Fredoka One', cursive;
     color:#073B4C;
         @include mobile {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
         @include s-tablet {
-            font-size: 3.5rem;
+            font-size: 3rem;
         }
         @include l-tablet {
-            font-size: 5rem;
+            font-size: 3.5rem;
         }
         @include desktop {
-            font-size: 5.5rem;
+            font-size: 3.5rem;
         }
+        @include l-desktop {
+            font-size: 3.5rem;
+        }
+        
     }
     .answer {
     background-color: white;
@@ -88,6 +123,7 @@ $large-desktop-width: 1800px;
     font-size: 1.5rem;
     margin:5px;
     color:#42565d;
+    cursor: pointer;
         @include mobile {
             font-size: 2rem;
         }
@@ -95,10 +131,13 @@ $large-desktop-width: 1800px;
             font-size: 2.5rem;
         }
         @include l-tablet {
-            font-size: 4rem;
+            font-size: 3rem;
         }
         @include desktop {
-            font-size: 4.5rem;
+            font-size: 3rem;
+        }
+        @include l-desktop {
+            font-size: 3rem;
         }
     }
     #score {
