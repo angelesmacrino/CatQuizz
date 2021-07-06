@@ -3,8 +3,8 @@
         <div class="row">
             <div v-if="index < questions.length" class="col d-flex flex-column align-items-center justify-content-center">
                 <div class="row" id="question"> {{index+1}}/{{questions.length}} : {{questions[index].question}}</div>
-                <div class="answer" id="correct" @click="correctChoice"> {{questions[index].correct_answer}} </div>
-                <div class="answer" id="incorrect" @click="wrongChoice"> {{questions[index].incorrect_answers[0]}} </div>
+                <div class="answer" id="True" @click="choiceMade('True', 'False')"> TRUE </div>
+                <div class="answer" id="False" @click="choiceMade('False', 'True')"> FALSE </div>
                 <div class="row align-self-start" id="score"> SCORE: {{score}} </div>
             </div>
         </div>
@@ -19,33 +19,36 @@ export default {
            index: 0,
            score: 0,
            answer: "",
-           loaded:false
+           loaded:false,
+          
        }
    },
    methods: {
-       correctChoice() {
-           this.score++
-            document.getElementById("correct").style.pointerEvents = "none";
-            document.getElementById("incorrect").style.pointerEvents = "none";
-            document.getElementById("correct").style.border = "thick solid #00FF00";
-            setTimeout(this.nextQuestion, 1500)
+       choiceMade(choice, other) {
+        document.getElementById(choice).style.pointerEvents = "none";
+        document.getElementById(other).style.pointerEvents = "none";
+        if (choice === this.questions[this.index].correct_answer) {
+            this.score++
+            document.getElementById(choice).style.border = "thick solid #00FF00";
+            document.getElementById(other).style.border = "thick solid #FF0000";
+        }
+        else {
+            document.getElementById(other).style.border = "thick solid #00FF00";
+            document.getElementById(choice).style.border = "thick solid #FF0000";
+        }
+        setTimeout(this.nextQuestion, 1500)
        },
-       wrongChoice() {
-            document.getElementById("incorrect").style.border = "thick solid #FF0000";
-            document.getElementById("correct").style.pointerEvents = "none";
-            document.getElementById("incorrect").style.pointerEvents = "none";
-            setTimeout(this.nextQuestion, 1500)
-       },
+      
        nextQuestion() {
             this.index++;
-            document.getElementById("correct").style.border = "none";
-            document.getElementById("incorrect").style.border = "none";
-            document.getElementById("correct").style.pointerEvents = "auto";
-            document.getElementById("incorrect").style.pointerEvents = "auto";
+            document.getElementById("True").style.border = "none";
+            document.getElementById("False").style.border = "none";
+            document.getElementById("True").style.pointerEvents = "auto";
+            document.getElementById("False").style.pointerEvents = "auto";
             if (this.index === this.questions.length) this.gameFinished;
        },
        gameFinished() {
-
+           
        }
    },
    created() {
