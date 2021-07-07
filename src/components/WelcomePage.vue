@@ -2,6 +2,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center" id="welcomePage">
         <img :src="require('../assets/' + catProfessor.Img)" :alt="catProfessor.alt">
         <h1>CAT QUIZZ</h1>
+        
         <button id="startGameButton" @click="startGame">GET STARTED!!</button>
     </div>
 
