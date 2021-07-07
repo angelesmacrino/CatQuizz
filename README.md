@@ -2,7 +2,8 @@
 
   ![Alt text](/src/assets/cat.png?raw=true "Optional Title")
 
-A cat-themed trivia game.   
+A cat-themed trivia game.  
+Made with the Open Trivia DB API https://opentdb.com/.  
   
 Illustration made with Adobe Illustrator.   
   
