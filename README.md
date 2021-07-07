@@ -4,11 +4,9 @@
 
 A cat-themed trivia game.  
 Made with the Open Trivia DB API https://opentdb.com/.  
-  
-Illustration made with Adobe Illustrator.   
-  
-UI design made with Adobe XD.
-  
 Developed in Vue 3.
+  
+Mr Cat illustration made with Adobe Illustrator.   
+UI design with Adobe XD.
+  
 
-In development
