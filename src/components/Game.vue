@@ -1,22 +1,11 @@
 <template>
 <div v-if="loaded" class="container">
         <div class="row">
-<<<<<<< HEAD
             <div v-if="index < questions.length" class="col d-flex flex-column align-items-center justify-content-center">
                 <div class="row" id="question"> {{index+1}}/{{questions.length}} : {{questions[index].question}}</div>
                 <div class="answer" id="True" @click="choiceMade('True', 'False')"> TRUE </div>
                 <div class="answer" id="False" @click="choiceMade('False', 'True')"> FALSE </div>
                 <div class="row align-self-start" id="score"> SCORE: {{score}} </div>
-=======
-            <div class="col d-flex flex-column align-items-center justify-content-center">
-                <div class="row" id="question">QUESTION</div>
-                    <div class="row answer" id="answer1">answer1</div>
-                    <div class="row answer" id="answer2">answer2</div>
-                    <div class="row answer" id="answer3">answer3</div>
-                    <div class="row answer" id="answer4">answer4</div>
-                    <div class="row answer" id="answer5">answer5</div>
-                <div class="row align-self-start" id="score">SCORE:</div>
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
             </div>
         </div>
 </div>
@@ -24,7 +13,6 @@
 
 <script>
 export default {
-<<<<<<< HEAD
     emits: ["finalScore"],
     data() {
        return {
@@ -75,9 +63,6 @@ export default {
         })
         .catch(err => console.log(err.message))
    }
-=======
-   
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
 }
 </script>
 
@@ -119,7 +104,6 @@ $large-desktop-width: 1800px;
 
 
 .container {
-<<<<<<< HEAD
     margin-left: auto;
     @media (orientation:portrait) {
         margin-top:20%;
@@ -127,11 +111,6 @@ $large-desktop-width: 1800px;
     @media (orientation:landscape) {
         margin-top:15%;
     }
-=======
-    @media (orientation:portrait) {
-        margin-top:20%;
-    }
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
     #question {
     background-color: white;
     border-radius: 25px;
@@ -139,7 +118,6 @@ $large-desktop-width: 1800px;
     font-family: 'Fredoka One', cursive;
     color:#073B4C;
         @include mobile {
-<<<<<<< HEAD
             font-size: 2rem;
             margin: 5px 5px 5px 5px
         }
@@ -156,19 +134,6 @@ $large-desktop-width: 1800px;
             font-size: 3.5rem;
         }
         
-=======
-            font-size: 3rem;
-        }
-        @include s-tablet {
-            font-size: 3.5rem;
-        }
-        @include l-tablet {
-            font-size: 5rem;
-        }
-        @include desktop {
-            font-size: 5.5rem;
-        }
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
     }
     .answer {
     background-color: white;
@@ -178,10 +143,7 @@ $large-desktop-width: 1800px;
     font-size: 1.5rem;
     margin:5px;
     color:#42565d;
-<<<<<<< HEAD
     cursor: pointer;
-=======
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
         @include mobile {
             font-size: 2rem;
         }
@@ -189,7 +151,6 @@ $large-desktop-width: 1800px;
             font-size: 2.5rem;
         }
         @include l-tablet {
-<<<<<<< HEAD
             font-size: 3rem;
         }
         @include desktop {
@@ -197,12 +158,6 @@ $large-desktop-width: 1800px;
         }
         @include l-desktop {
             font-size: 3rem;
-=======
-            font-size: 4rem;
-        }
-        @include desktop {
-            font-size: 4.5rem;
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
         }
     }
     #score {
@@ -215,8 +170,4 @@ $large-desktop-width: 1800px;
     }
     
  
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> 1f3ceff089d1cb4364a2fdef0a036fabb9881371
