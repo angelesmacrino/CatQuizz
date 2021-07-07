@@ -13,7 +13,8 @@
 
 <script>
 export default {
-   data() {
+    emits: ["finalScore"],
+    data() {
        return {
            questions: [],
            index: 0,
@@ -23,6 +24,7 @@ export default {
           
        }
    },
+
    methods: {
        choiceMade(choice, other) {
         document.getElementById(choice).style.pointerEvents = "none";
@@ -45,10 +47,10 @@ export default {
             document.getElementById("False").style.border = "none";
             document.getElementById("True").style.pointerEvents = "auto";
             document.getElementById("False").style.pointerEvents = "auto";
-            if (this.index === this.questions.length) this.gameFinished;
+            if (this.index === this.questions.length) this.gameFinished(this.score);
        },
-       gameFinished() {
-           
+       gameFinished(event) {
+           this.$emit("finalScore", event)
        }
    },
    created() {
@@ -116,7 +118,8 @@ $large-desktop-width: 1800px;
     font-family: 'Fredoka One', cursive;
     color:#073B4C;
         @include mobile {
-            font-size: 2.5rem;
+            font-size: 2rem;
+            margin: 5px 5px 5px 5px
         }
         @include s-tablet {
             font-size: 3rem;
