@@ -9,6 +9,6 @@ cd dist
 git init
 git add -A
 git commit -m "."
-git push -f https://github.com/angelesmacrino/MrCatQuizz.git master:gh-pages
+git push -f https://github.com/angelesmacrino/CatQuizz.git master:gh-pages
 
 cd - 

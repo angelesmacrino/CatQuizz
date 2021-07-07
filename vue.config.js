@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath:'/MrCatQuizz/',
+    publicPath:'/CatQuizz/',
     css: {
       loaderOptions: {
         sass: {
